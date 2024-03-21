@@ -106,7 +106,7 @@ Escolha a opção que responde corretamente qual seria a saída após a execuç�
 
 A) As funções calcularOrcamento() e calcularOrcamento2() teriam a mesma saída: 'Seu saldo é negativo de -1050.'
 
-B) A saída de calcularOrcamento() seria: 'Seu saldo é negativo de -1050.' e a de calcularOrcamento2() seria: 'Seu saldo é negativo de -100.'
+˜˜B) A saída de calcularOrcamento() seria: 'Seu saldo é negativo de -1050.' e a de calcularOrcamento2() seria: 'Seu saldo é negativo de -100.'˜˜
 
 C) A saída de calcularOrcamento() seria: 'Seu saldo é negativo de -100.' e a de calcularOrcamento2() seria: 'Seu saldo é negativo de -1050.'
 
@@ -167,8 +167,7 @@ for (var i = 0; i < valorCompras.length; i++) {
 
 Escolha a opção que responde corretamente:
 
-A)
-Compra 1 aprovada. Saldo restante: 800
+A) Compra 1 aprovada. Saldo restante: 800
 
 Compra 2 aprovada com limite de crédito. Saldo restante: 700
 
@@ -178,21 +177,17 @@ Compra 4 aprovada com limite de crédito. Saldo restante: 0
 
 Compra 5 aprovada. Saldo restante: -200
 
-
-B)
-Compra 1 aprovada. Saldo restante: 800
+B) Compra 1 aprovada. Saldo restante: 800
 
 Compra 2 aprovada com limite de crédito. Saldo restante: 700
 
-Compra 3 aprovada. Saldo restante: 400
+Compra 3 aprovada. Saldo restante: 200
 
-Compra 4 aprovada com limite de crédito. Saldo restante: 0
+Compra 4 negada. Saldo insuficiente e limite de crédito excedido.
 
 Compra 5 negada. Saldo insuficiente e limite de crédito excedido.
 
-
-C)
-Compra 1 aprovada. Saldo restante: 800
+C) Compra 1 aprovada. Saldo restante: 800
 
 Compra 2 aprovada com limite de crédito. Saldo restante: 700
 
@@ -200,18 +195,17 @@ Compra 3 aprovada. Saldo restante: 400
 
 Compra 4 negada. Saldo insuficiente e limite de crédito excedido.
 
+˜˜D)˜˜
 
-D)
+˜˜Compra 1 aprovada. Saldo restante: 800˜˜
 
-Compra 1 aprovada. Saldo restante: 800
+˜˜Compra 2 aprovada. Saldo restante: 0˜˜
 
-Compra 2 aprovada com limite de crédito. Saldo restante: 700
+˜˜Compra 3 aprovada com limite de crédito. Saldo restante: 200˜˜
 
-Compra 3 aprovada. Saldo restante: 400
+˜˜Compra 4 negada. Saldo insuficiente e limite de crédito excedido.˜˜
 
-Compra 4 aprovada. Saldo restante: 0
-
-Compra 5 negada. Saldo insuficiente e limite de crédito excedido.
+˜˜Compra 5 negada. Saldo insuficiente e limite de crédito excedido.˜˜
 
 ______
 
@@ -312,16 +306,22 @@ ______
 
 Algoritmo "testeCarro"
 var 
-velocidadeInicial, aceleracao, distancia, velocidadeMaxima, tempoMaximo, velocidadeFinal, tempo
+velocidadeInicial, aceleracao, distancia, velocidadeMaxima, tempoMaximo, velocidadeFinal, tempo, pntInicial, pntFinal
 velocidadeInicial = 0
 velocidadeMaxima = 100
 tempoMaximo = 600
 aceleracao = (velocidadeFinal - velocidadeInicial) / tempo
+distancia = pntFinal - pntInicial
 
-metodo testeDesempenho 
-
-
-
+metodo testeDesempenho(velocidadeFinal, velocidadeInicial, aceleracao, tempo, pntFinal, pntInicial) 
+se velocidadeFinal > velocidadeMaxima 
+    acabar testeDesempenho
+se tempo > tempoMaximo
+    acabar testeDesempenho
+se nao
+velocidadeFinal = velocidadeInicial + aceleracao * tempo
+pntFinal = pntInicial + velocidadeFinal * tempo
+imprimir tempo, distancia
 
 ______
 
@@ -352,3 +352,23 @@ matrizSoma <- SomaDeMatrizes(matrizA, matrizB)
 Escrever("Soma das matrizes:")
 ImprimirMatriz(matrizSoma)
 ```
+
+Função MultiplicacaoDeMatrizes(matrizA, matrizB):
+    # Verifica se o número de colunas da matrizA é igual ao número de linhas da matrizB
+    Se tamanho(matrizA[0]) ≠ tamanho(matrizB) então:
+        Retornar "As matrizes não podem ser multiplicadas. O número de colunas da primeira matriz deve ser igual ao número de linhas da segunda matriz."
+    Senão:
+        linhasA <- tamanho(matrizA)
+        colunasA <- tamanho(matrizA[0]) # Número de colunas da matrizA
+        colunasB <- tamanho(matrizB[0]) # Número de colunas da matrizB
+        matrizResultado <- novaMatriz(linhasA, colunasB)
+
+        # Loop para calcular cada elemento da matriz resultado
+        Para i de 0 até linhasA-1 faça:
+            Para j de 0 até colunasB-1 faça:
+                # Inicializa o elemento da matriz resultado como 0
+                matrizResultado[i][j] <- 0
+                Para k de 0 até colunasA-1 faça:
+                    matrizResultado[i][j] <- matrizResultado[i][j] + (matrizA[i][k] * matrizB[k][j])
+
+        Retornar matrizResultado
